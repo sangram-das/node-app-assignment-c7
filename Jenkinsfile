@@ -47,6 +47,7 @@ pipeline {
         stage ('Update Docker Image') {
             steps{
                 sshagent(credentials : ['b083cd92-e899-4104-b1ae-69053d78e995']) {
+                    sh 'scp restart_docker.sh  ubuntu@10.150.5.239:'
                     sh 'ssh ubuntu@10.150.5.239 source restart_docker.sh'
                 }
             }
