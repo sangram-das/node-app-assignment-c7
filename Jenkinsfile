@@ -15,7 +15,7 @@ pipeline {
         stage('Build') { 
             steps { 
                 script{
-                 app = docker.build("underwater")
+                 app = docker.build("assignment-c7-916-app")
                 }
             }
         }
@@ -27,7 +27,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 script{
-                        docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-2:aws-credentials') {
+                    docker.withRegistry('https://720766170633.dkr.ecr.us-east-2.amazonaws.com', 'ecr:us-east-1:AWS-assignment-c7') {
                     app.push("${env.BUILD_NUMBER}")
                     app.push("latest")
                     }
