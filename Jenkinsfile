@@ -46,7 +46,7 @@ pipeline {
         }
         stage ('Update Docker Image') {
             steps{
-                sshagent(credentials : ['ubuntu']) {
+                sshagent(credentials : ['app-server-access']) {
                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.150.5.239 uptime'
                     sh 'ssh -v ubuntu@10.150.5.239'
                 }
