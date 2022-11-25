@@ -47,10 +47,7 @@ pipeline {
         stage ('Update Docker Image') {
             steps{
                 sshagent(credentials : ['b083cd92-e899-4104-b1ae-69053d78e995']) {
-                    sh 'ssh ubuntu@10.150.5.239 docker pull 020897777613.dkr.ecr.us-east-1.amazonaws.com/assignment-c7-916-app:latest'
-                    sh 'ssh ubuntu@10.150.5.239 docker pull 020897777613.dkr.ecr.us-east-1.amazonaws.com/assignment-c7-916-app:latest'
-                    sh 'ssh ubuntu@10.150.5.239 docker ps | grep 020897777613.dkr.ecr.us-east-1.amazonaws.com/assignment-c7-916-app | cut -d " " -f 1 | xargs docker kill'
-                    sh 'ssh ubuntu@10.150.5.239 docker docker run 020897777613.dkr.ecr.us-east-1.amazonaws.com/assignment-c7-916-app'
+                    sh 'ssh ubuntu@10.150.5.239 ./restart_docker.sh'
                 }
             }
         }
